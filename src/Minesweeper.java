@@ -22,9 +22,6 @@ public class Minesweeper {
         for(int x = 0; x < grid.length; x++){
             for (int y = 0; y < grid[0].length; y++){
                 grid[x][y] = unopened; // Initially, all fields are unopened
-
-
-
             }
         }
     }
@@ -34,7 +31,6 @@ public class Minesweeper {
         for (int x = 0; x < grid.length; x++) {
             for (int y = 0; y < grid[0].length; y++){
                 System.out.print(grid[x][y]);
-
             }
         }
     }
@@ -70,8 +66,21 @@ public class Minesweeper {
     }
 
     public void detectSurroundingMines(int args){
-        // TO BE CONTINUED
+        for(int x = 0; x < grid.length; x++){
+            for(int y = 0; y < grid.length; y++){
+                if(grid[x][y].equals(blank)){
+                    int number = 0;
 
+                    for(int a = (x-1); a <= (x+1); a++){
+                        for(int b = (y-1); b <= (y+1); b++){
+                            if(mine.equals(grid[a][b]))
+                                number++;
+                        }
+                    }
+                    grid[x][y] = "" + number; // number = the number displayed in x,y of surounding mines which may be within  +/- x and y
+                }
+            }
+        }
     }
 
     public void refreshGrid(){

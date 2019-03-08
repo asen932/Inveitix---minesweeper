@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Minesweeper {
 
     public boolean gameWon = false; // if all unopened positions are mines
@@ -18,21 +16,21 @@ public class Minesweeper {
         int row = 0;
         int column = 0;
 
-
         for(int x = 0; x < grid.length; x++){
             for (int y = 0; y < grid[0].length; y++){
-                grid[x][y] = unopened; // Initially, all fields are unopened
+                grid[x][y] = unopened; // Initially, all fields in the array are unopened
             }
         }
     }
 
-    public void printInConsole(String[][] args) {
+    public String printInConsole(String[][] args) {
 
-        for (int x = 0; x < grid.length; x++) {
-            for (int y = 0; y < grid[0].length; y++){
-                System.out.print(grid[x][y]);
+        for (int x = 0; x < args.length; x++) {
+            for (int y = 0; y < args[0].length; y++){
+                System.out.print(args[x][y]);
             }
         }
+        return printInConsole(grid);
     }
 
     public void placeMines(int desiredMines) {  // where desiredMines =
@@ -65,7 +63,7 @@ public class Minesweeper {
         return gameRunning;
     }
 
-    public void detectSurroundingMines(int args){
+    public void detectSurroundingMines(){
         for(int x = 0; x < grid.length; x++){
             for(int y = 0; y < grid.length; y++){
                 if(grid[x][y].equals(blank)){
@@ -85,39 +83,23 @@ public class Minesweeper {
 
     public void refreshGrid(){
         printInConsole(grid);
+        System.out.println("---------");
     }
 
-    public void play(int args) {
-        Scanner coordinate = new Scanner(System.in);
+    public void minesweeperTurn(int x, int y) {
+        if(grid[x][y].equals(unopened)){
+            grid[x][y] = blank;
+        }
+        else if(grid[x][y].equals(mine)){
+            gameRunning = false;
+            gameWon = true;
+            gameLost = true;
+            grid[x][y] = mine;
+        }
+        else if(grid[x][y].equals(blank)){
+            System.out.println("Please select an unopened tile");
 
-        int x;
-        int y;
-
-        System.out.println("Enter a X coordinate:");
-        x = coordinate.nextInt();
-
-        System.out.println("Enter a Y coordinate:");
-        y = coordinate.nextInt();
-
-        while (true) {
-
-            // TO BE CONTINUED
-
-
-            if (gameRunning) {
-
-            } else if (gameWon) {
-
-            } else if (gameLost) {
-
-            }
         }
     }
-
-
-
-
-
-
 
 }

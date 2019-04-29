@@ -20,7 +20,7 @@ public class Minesweeper {
             for (int y = 0; y < grid[0].length; y++){
                 grid[x][y] = unopened; // Initially, all fields in the array are unopened
             }
-        }
+}
     }
 
     public String printInConsole(String[][] args) {
